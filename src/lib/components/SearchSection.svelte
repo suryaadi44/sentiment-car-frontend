@@ -184,7 +184,7 @@
 			</Label>
 		</div>
 		<div class="flex items-center justify-center">
-			<Button on:click={fetchPredcitions} class="mt-1">Search</Button>
+			<Button on:click={fetchPredcitions} class="block w-full px-4 py-2 text-gray-900  border border-gray-300 rounded-md focus:ring-primary-500 focus:border-primary-500 mt-2">Search</Button>
 		</div>
 	</div>
 </div>
