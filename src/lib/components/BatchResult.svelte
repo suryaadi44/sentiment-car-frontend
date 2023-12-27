@@ -7,7 +7,7 @@
 	import {
 		Label,
 		Input,
-        Table,
+		Table,
 		TableHead,
 		TableHeadCell,
 		TableBody,
@@ -49,8 +49,8 @@
 </script>
 
 <!-- if ready -->
-<div class="py-4">
-	<div class="grid grid-cols-2 gap-5">
+<div class="py-4 justify-center">
+	<div class="grid grid-cols-2 gap-5 mb-3">
 		{#if dataChart != null}
 			<Pie
 				width={500}
@@ -61,40 +61,45 @@
 				}}
 			/>
 		{/if}
-		<div>
-			{#if currentPrediction != null}
-				<h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">File</h5>
-				<Label class="block mb-2">Filename</Label>
-				<Input
-					id="filename"
-					name="filename"
-					placeholder={currentPrediction.filename}
-					disabled={true}
-				/>
-				<Label class="block mb-2">Dibuat</Label>
-				<Input id="time" name="time" placeholder={currentPrediction.timestamp} disabled={true} />
-				<Label class="block mb-2">Sentimen</Label>
-				<div class="grid grid-cols-2 gap-2">
-					<div>
-						<Label class="block mb-2">Positif</Label>
-						<Input
-							id="positive"
-							name="positive"
-							placeholder={currentPrediction.meta.positive}
-							disabled={true}
-						/>
+		<div class="flex items-center">
+			<div>
+				{#if currentPrediction != null}
+					<h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">File</h5>
+					<Label class="block mt-2">Filename</Label>
+					<Input
+						id="filename"
+						name="filename"
+                        defaultClass="block w-full disabled:cursor-not-allowed disabled:opacity-100 rtl:text-right"
+						placeholder={currentPrediction.filename}
+						disabled={true}
+					/>
+					<Label class="block mt-2">Dibuat</Label>
+					<Input id="time" name="time"  defaultClass="block w-full disabled:cursor-not-allowed disabled:opacity-100 rtl:text-right" placeholder={currentPrediction.timestamp} disabled={true} />
+					<Label class="block mt-2">Sentimen</Label>
+					<div class="grid grid-cols-2 gap-2">
+						<div>
+							<Label class="block mt-2">Positif</Label>
+							<Input
+								id="positive"
+								name="positive"
+                                defaultClass="block w-full disabled:cursor-not-allowed disabled:opacity-100 rtl:text-right"
+								placeholder={currentPrediction.meta.positive}
+								disabled={true}
+							/>
+						</div>
+						<div>
+							<Label class="block mt-2">Negatif</Label>
+							<Input
+								id="negative"
+								name="negative"
+                                defaultClass="block w-full disabled:cursor-not-allowed disabled:opacity-100 rtl:text-right"
+								placeholder={currentPrediction.meta.negative}
+								disabled={true}
+							/>
+						</div>
 					</div>
-					<div>
-						<Label class="block mb-2">Negatif</Label>
-						<Input
-							id="negative"
-							name="negative"
-							placeholder={currentPrediction.meta.negative}
-							disabled={true}
-						/>
-					</div>
-				</div>
-			{/if}
+				{/if}
+			</div>
 		</div>
 	</div>
 	<Table divClass="relative overflow-x-auto">
