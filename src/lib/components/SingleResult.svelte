@@ -50,45 +50,45 @@
 
 <!-- if ready -->
 <div class="py-4">
-	<div class="grid grid-cols-2 gap-5 ">
-        <div class="content-center">
-            {#if dataChart != null}
-			<Pie
-            width={500}
-            height={500}
-            data={dataChart}
-            options={{
-                responsive: false
-            }}
-			/>
-            {/if}
-        </div>
-        <div class="flex items-center">
-            <div class="flex flex-col grow">
-				{#if currentPrediction != null}
-					<h5 class="mt-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-						Sentimen {currentPrediction.predictionStr}
-					</h5>
-					<Label class="block mt-2">Data</Label>
-					<Textarea {...textareaprops} />
-					<Label class="block mt-2">Waktu</Label>
-					<Input
-						id="time"
-						name="time"
-						defaultClass="block w-full disabled:cursor-not-allowed disabled:opacity-100 rtl:text-right"
-						placeholder={currentPrediction.time}
-						disabled={true}
-					/>
-					<Label class="block mt-2">Sentimen</Label>
-					<Input
-						id="sentiment"
-						name="sentiment"
-						defaultClass="block w-full disabled:cursor-not-allowed disabled:opacity-100 rtl:text-right"
-						placeholder={currentPrediction.predictionStr}
-						disabled={true}
+	<Card size="2xl">
+		<div class="grid grid-cols-3 gap-5 justify-center">
+			<div class="content-center">
+				{#if dataChart != null}
+					<Pie
+						data={dataChart}
+						options={{
+							responsive: true
+						}}
 					/>
 				{/if}
 			</div>
+			<div class="flex items-center col-span-2">
+				<div class="flex flex-col grow">
+					{#if currentPrediction != null}
+						<h5 class="mt-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+							Sentimen {currentPrediction.predictionStr}
+						</h5>
+						<Label class="block mt-2">Data</Label>
+						<Textarea {...textareaprops} />
+						<Label class="block mt-2">Waktu</Label>
+						<Input
+							id="time"
+							name="time"
+							defaultClass="block w-full disabled:cursor-not-allowed disabled:opacity-100 rtl:text-right"
+							placeholder={currentPrediction.time}
+							disabled={true}
+						/>
+						<Label class="block mt-2">Sentimen</Label>
+						<Input
+							id="sentiment"
+							name="sentiment"
+							defaultClass="block w-full disabled:cursor-not-allowed disabled:opacity-100 rtl:text-right"
+							placeholder={currentPrediction.predictionStr}
+							disabled={true}
+						/>
+					{/if}
+				</div>
+			</div>
 		</div>
-	</div>
+	</Card>
 </div>

@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { Card } from 'flowbite-svelte';
 	import type { BatchPredictionResponse } from '$lib/dto/prediction';
 	import { batchPredictionFile } from '$lib/response';
 	import { onMount } from 'svelte';
@@ -49,58 +50,71 @@
 </script>
 
 <!-- if ready -->
+
 <div class="py-4 justify-center">
-	<div class="grid grid-cols-2 gap-5 mb-3">
-		{#if dataChart != null}
-			<Pie
-				width={500}
-				height={500}
-				data={dataChart}
-				options={{
-					responsive: false
-				}}
-			/>
-		{/if}
-		<div class="flex items-center">
-			<div>
-				{#if currentPrediction != null}
-					<h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">File</h5>
-					<Label class="block mt-2">Filename</Label>
-					<Input
-						id="filename"
-						name="filename"
-                        defaultClass="block w-full disabled:cursor-not-allowed disabled:opacity-100 rtl:text-right"
-						placeholder={currentPrediction.filename}
-						disabled={true}
-					/>
-					<Label class="block mt-2">Dibuat</Label>
-					<Input id="time" name="time"  defaultClass="block w-full disabled:cursor-not-allowed disabled:opacity-100 rtl:text-right" placeholder={currentPrediction.timestamp} disabled={true} />
-					<Label class="block mt-2">Sentimen</Label>
-					<div class="grid grid-cols-2 gap-2">
-						<div>
-							<Label class="block mt-2">Positif</Label>
+	<div class="mb-2">
+		<Card size="2xl">
+			<div class="grid grid-cols-3 gap-5 mb-3">
+				<div>
+					{#if dataChart != null}
+						<Pie
+							data={dataChart}
+							options={{
+								responsive: true
+							}}
+						/>
+					{/if}
+				</div>
+				<div class="flex items-center col-span-2">
+					<div class="grow">
+						{#if currentPrediction != null}
+							<h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+								File
+							</h5>
+							<Label class="block mt-2">Filename</Label>
 							<Input
-								id="positive"
-								name="positive"
-                                defaultClass="block w-full disabled:cursor-not-allowed disabled:opacity-100 rtl:text-right"
-								placeholder={currentPrediction.meta.positive}
+								id="filename"
+								name="filename"
+								defaultClass="block w-full disabled:cursor-not-allowed disabled:opacity-100 rtl:text-right"
+								placeholder={currentPrediction.filename}
 								disabled={true}
 							/>
-						</div>
-						<div>
-							<Label class="block mt-2">Negatif</Label>
+							<Label class="block mt-2">Dibuat</Label>
 							<Input
-								id="negative"
-								name="negative"
-                                defaultClass="block w-full disabled:cursor-not-allowed disabled:opacity-100 rtl:text-right"
-								placeholder={currentPrediction.meta.negative}
+								id="time"
+								name="time"
+								defaultClass="block w-full disabled:cursor-not-allowed disabled:opacity-100 rtl:text-right"
+								placeholder={currentPrediction.timestamp}
 								disabled={true}
 							/>
-						</div>
+							<Label class="block mt-2">Sentimen</Label>
+							<div class="grid grid-cols-2 gap-2">
+								<div>
+									<Label class="block mt-2">Positif</Label>
+									<Input
+										id="positive"
+										name="positive"
+										defaultClass="block w-full disabled:cursor-not-allowed disabled:opacity-100 rtl:text-right"
+										placeholder={currentPrediction.meta.positive}
+										disabled={true}
+									/>
+								</div>
+								<div>
+									<Label class="block mt-2">Negatif</Label>
+									<Input
+										id="negative"
+										name="negative"
+										defaultClass="block w-full disabled:cursor-not-allowed disabled:opacity-100 rtl:text-right"
+										placeholder={currentPrediction.meta.negative}
+										disabled={true}
+									/>
+								</div>
+							</div>
+						{/if}
 					</div>
-				{/if}
+				</div>
 			</div>
-		</div>
+		</Card>
 	</div>
 	<Table divClass="relative overflow-x-auto">
 		<TableHead>
